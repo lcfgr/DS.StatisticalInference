@@ -2,12 +2,14 @@
 title: 'Statistical Inference: Course Project'
 author: "Lampros Fxxxxxxx"
 output:
+  word_document: default
+  pdf_document: default
   html_document:
     keep_md: yes
 ---
 
 ```{r setoptions, echo=FALSE}
-knitr::opts_chunk$set( message=FALSE, warnings=FALSE)
+knitr::opts_chunk$set( echo= FALSE, message=FALSE, warnings=FALSE)
 
 ```
 
@@ -25,9 +27,9 @@ Finally, we will compare the sample distribution with the normal.
 * Load libraries and set the simulation parameters
 ----
 
-```{r}
+```{r,message=F,echo=FALSE}
 
-if (!require("ggplot2")) install.packages("ggplot2")
+if (!require("ggplot2")) install.packages("ggplot2",repos = 'http://cran.us.r-project.org')
 
 lamda <- 0.2
 n <- 40

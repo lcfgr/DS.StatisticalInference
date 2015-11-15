@@ -18,48 +18,19 @@ Finally, we will compare the sample distribution with the normal.
 ----
 
 
-```r
-if (!require("ggplot2")) install.packages("ggplot2")
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.2.2
-```
-
-```r
-lamda <- 0.2
-n <- 40
-nosim <- 1000
-set.seed(6661821)
-```
 
 
 * Create a matrix with the needed number of simulations and parameters and calculate the means
 
 
-```r
-simulations <- replicate(nosim, rexp(n, lamda))
-means_sim <- apply(simulations, 2, mean)
-```
 
 
 # Sample Mean versus Theoretical Mean
 
 * Calculate the mean of the simulated distribution and the theoretical center of the distribution
 
-```r
-distribution_center <- mean(means_sim)
-theoretical_center <- 1/lamda
-```
 
 * We plot the histogram, along with a red line for the theoretical mean and orange line for the simulated(sample) mean.
-
-
-```r
-hist(means_sim, breaks=50, freq=FALSE, col='lightblue', xlab ="means", main = "Simulation")
-abline(v = theoretical_center, col = "red")
-abline(v = distribution_center, col = "orange")
-```
 
 ![](statinf_files/figure-html/unnamed-chunk-4-1.png) 
 
@@ -77,10 +48,6 @@ The theoretical standard deviation is :$\frac{\frac{1}{lamda}}{\sqrt(n)}$
 
 We calculate the theoretical and sample standard deviations below:
 
-```r
-theoretical_sd <- (1/lamda)/sqrt(n)
-sample_sd <- sd(means_sim)
-```
 The results are:  
 Theoretical SD : 0.7905694  
 Sample SD : 0.7956291
@@ -88,28 +55,12 @@ Sample SD : 0.7956291
 
 The variance is the square of the standard deviation:  
 
-```r
-theoretical_var <- theoretical_sd^2
-sample_var <- sample_sd^2
-```
 
 The results are: 
 Theoretical variance: 0.625  
 Sample variance: 0.6330257  
 
 * Plot the theoretical distribution in comparison with the simulated results.
-
-
-```r
-hist(means_sim, breaks=50, freq=FALSE, col='lightblue', xlab ="means", main = "Simulation")
-abline(v = theoretical_center, col = "red")
-abline(v = distribution_center, col = "orange")
-lines(density(means_sim))
-# Create the corresponding standard distribution for the simulated distribution
-xfit <- seq(min(means_sim), max(means_sim), length=1000)
-yfit <- dnorm(xfit, mean=1/lamda, sd=(1/lamda/sqrt(n)))
-lines(xfit, yfit, pch=22, col="red", lty=2)
-```
 
 ![](statinf_files/figure-html/unnamed-chunk-7-1.png) 
 
@@ -119,12 +70,6 @@ We can see how similar the simulated distribution of means is, compared to the c
 
 Although we can visually see above that the distribution is approximately normal, we can examine the distribution normality by a Q-Q plot
 
-
-
-```r
-qqnorm(means_sim)
-qqline(means_sim)
-```
 
 ![](statinf_files/figure-html/unnamed-chunk-8-1.png) 
 

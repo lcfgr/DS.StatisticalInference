@@ -12,13 +12,6 @@ In this part of the project we analyze the ToothGrowth data in the R datasets pa
 
 ```r
 if (!require("ggplot2")) install.packages("ggplot2")
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.2.2
-```
-
-```r
 library(datasets)
 toothdata <- ToothGrowth
 ```
